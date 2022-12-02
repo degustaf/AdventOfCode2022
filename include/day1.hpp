@@ -1,5 +1,5 @@
-#ifndef AOC2022_DAY1_H
-#define AOC2022_DAY1_H
+#ifndef AOC2022_DAY1_HPP
+#define AOC2022_DAY1_HPP
 
 #include <array>
 #include <fstream>
@@ -17,4 +17,4 @@ class Day1 {
     void better(int);
 };
 
-#endif /* AOC2022_DAY1_H */
+#endif /* AOC2022_DAY1_HPP */

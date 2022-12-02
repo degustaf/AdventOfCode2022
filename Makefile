@@ -18,10 +18,10 @@ LINK = 				$(CXX)
 AR = 				ar
 CXX_STD =			c++17
 DEF =				-g
-CXXFLAGS =			-I$(PATHI) -Wall -Wextra -Werror $(ARCH) -O3 -std=$(CXX_STD) -D_POSIX_C_SOURCE=200809L $(DEF)
-CLIENT_CFLAGS = 	-I$(PATHI) -Wall -Wextra -Werror -pedantic $(ARCH) -std=$(CXX_STD) -D_POSIX_C_SOURCE=200809L $(DEF)
+CXXFLAGS =			-I$(PATHI) -Wall -Wextra -Werror -pedantic $(ARCH) -std=$(CXX_STD) -O3 -D_POSIX_C_SOURCE=200809L $(DEF)
 
 LDFLAGS =			$(ARCH) $(DEF)
+LDLIBS =			-pthread
 
 COMPILE =			$(CXX) $(CXXFLAGS) -MT $@ -MP -MMD -MF $(PATHD)/$*.Td
 OBJS =				$(addprefix $(PATHLB)/, $(notdir $(SRCS:.cpp=.o)))
@@ -67,7 +67,7 @@ $(PATHLB)/$(LIBRARY): $(OBJS)
 	$(AR) rcs $@ $^
 
 $(PATHB)/%.o: $(PATHC)/%.cpp | $(PATHB) $(PATHD)
-	$(CXX) $(CLIENT_CFLAGS) -MT $@ -MP -MMD -MF $(PATHD)/$*.Td -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MT $@ -MP -MMD -MF $(PATHD)/$*.Td -c $< -o $@
 	$(POSTCOMPILE)
 
 $(PATHLB)/%.o: $(PATHS)/%.cpp | $(PATHLB) $(PATHD)
