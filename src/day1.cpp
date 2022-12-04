@@ -34,7 +34,7 @@ Day1::Day1(const std::string &filename) : data(filename) {
 }
 */
 
-void producer(std::ifstream *data, channel<int> *ch) {
+static void producer(std::ifstream *data, channel<int> *ch) {
   string s;
   int current = 0;
 
